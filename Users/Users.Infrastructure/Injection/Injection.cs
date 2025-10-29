@@ -1,14 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Users.Application.Abstractions;
+using Users.Domain.Entities;
 using Users.Infrastructure.Database;
+using Users.Infrastructure.Persistence;
 
 namespace Users.Infrastructure.Injection;
 public static class Injection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        _ = services.AddDbContext<ApplicationDbContext>(options =>
+        services.AddDbContext<ApplicationDbContext>(options =>
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
@@ -17,6 +20,8 @@ public static class Injection
 
             options.UseNpgsql(connectionString);
         });
+
+        services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }

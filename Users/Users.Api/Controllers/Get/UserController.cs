@@ -1,19 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 using Users.Application.Abstractions.Messaging;
 using Users.Application.Users.Queries;
+using Users.Domain.Dtos;
 using Users.Domain.Entities;
 
 namespace Users.Api.Controllers.Get;
 
 [ApiController]
 [Route($"api/{RestResources.Version}/{RestResources.Users}")]
-public sealed class UsersController(IQueryHandler<GetUsersQuery, List<User>> queryHandler) : ControllerBase
+public class UserController(IQueryHandler<GetUserQuery, UserDto> queryHandler) : ControllerBase
 {
-    [HttpGet]
-    public async Task<IActionResult> GetUsers(CancellationToken cancellationToken = default)
+    [HttpGet("id:guid")]
+    public async Task<IActionResult> GetUser(Guid id, CancellationToken cancellationToken = default)
     {
-        var query = new GetUsersQuery();
+        var query = new GetUserQuery(id);
         var result = await queryHandler.HandleAsync(query, cancellationToken);
-        return Ok(result.Data);
+        return Ok(result);
     }
 }
