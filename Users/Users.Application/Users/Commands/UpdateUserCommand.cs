@@ -21,7 +21,7 @@ public sealed class UpdatedUserCommandHandler(
     {
         ArgumentNullException.ThrowIfNull(commnad);
 
-        var searchUser = await repository.GetById(commnad.Id);
+        var searchUser = await repository.GetByIdAsync(commnad.Id);
 
         if (!searchUser.IsSuccess)
             return Result<UserDto>.Failure("No ha sido posible encontrar la entidad");
@@ -33,7 +33,7 @@ public sealed class UpdatedUserCommandHandler(
         user!.Email = commnad.Email;
         user!.Phone = commnad.Phone;
 
-        var userUpdated = await repository.UpdateUser(commnad.Id, user);
+        var userUpdated = await repository.UpdateAsync(commnad.Id, user);
 
         if (!userUpdated.IsSuccess)
             return Result<UserDto>.Failure("No ha sido posible actualziar la entidad");

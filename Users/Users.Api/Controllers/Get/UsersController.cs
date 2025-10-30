@@ -14,6 +14,6 @@ public sealed class UsersController(IQueryHandler<GetUsersQuery, List<User>> que
     {
         var query = new GetUsersQuery();
         var result = await queryHandler.HandleAsync(query, cancellationToken);
-        return Ok(result.Data);
+        return Ok(result);
     }
 }

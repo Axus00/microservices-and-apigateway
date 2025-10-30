@@ -16,7 +16,7 @@ public sealed class DeleteUserCommandHandler(
     {
         ArgumentException.ThrowIfNullOrEmpty(commnad.Id.ToString());
 
-        var searchUser = await repository.GetById(commnad.Id);
+        var searchUser = await repository.GetByIdAsync(commnad.Id);
 
         if (searchUser == null)
             return Result<User>.Failure("No ha sido posible encontrar la entidad");

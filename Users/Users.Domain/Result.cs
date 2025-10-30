@@ -4,6 +4,8 @@ public class Result<T>
     public bool IsSuccess { get; set; }
     public string? Message { get; set; }
     public T? Data { get; set; }
+    public object? Errors { get; set; }
+    public DateTime TimeStamp { get; set; } = DateTime.UtcNow;
 
     public static Result<T> Success(T data, string message)
     {

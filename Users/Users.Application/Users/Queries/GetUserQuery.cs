@@ -19,7 +19,7 @@ internal sealed class GetUserQueryHandler(
     {
         ArgumentNullException.ThrowIfNull(query);
 
-        var user = await repository.GetById(query.Id);
+        var user = await repository.GetByIdAsync(query.Id);
 
         if (user.Data == null)
             return Result<UserDto>.Failure("No ha sido posible encontrar e usuario");

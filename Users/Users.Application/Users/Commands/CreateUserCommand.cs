@@ -20,7 +20,7 @@ internal sealed class CreateUserCommandHandler(
     {
         try
         {
-            var result = await repository.CreateUser(commnad, dto => new User
+            var result = await repository.CreateAsync(commnad, dto => new User
             {
                 Name = commnad.Name,
                 LastName = commnad.LastName,

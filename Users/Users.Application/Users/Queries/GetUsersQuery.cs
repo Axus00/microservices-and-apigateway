@@ -12,7 +12,7 @@ internal sealed class GetUsersQueryHandler(
 {
     public async Task<Result<List<User>>> HandleAsync(GetUsersQuery query, CancellationToken cancellationToken = default)
     {
-        var result = await repository.GetAll();
+        var result = await repository.GetAllAsync();
 
         if (!result.IsSuccess)
             return Result<List<User>>.Failure(result.Message!);
