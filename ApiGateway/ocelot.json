@@ -1,28 +1,52 @@
 {
     "Routes": [
         {
-            "DownstreamPathTemplate": "/api/v1/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+            "UpstreamPathTemplate": "/api/v1/users/{id}",
+            "DownstreamPathTemplate": "/api/v1/users/{id}",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
                     "Host": "localhost",
                     "Port": 5001
                 }
-            ],
-            "UpstreamPathTemplate": "/users/v1/{everything}",
-            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+            ]
         },
         {
-            "DownstreamPathTemplate": "/api/v1/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+            "UpstreamPathTemplate": "/api/v1/users",
+            "DownstreamPathTemplate": "/api/v1/users",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
                     "Host": "localhost",
                     "Port": 5001
                 }
-            ],
-            "UpstreamPathTemplate": "/users/v1",
-            "UpstreamHttpMethod": [ "GET", "POST" ]
+            ]
+        },
+        {
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+            "UpstreamPathTemplate": "/api/v1/products/{id}",
+            "DownstreamPathTemplate": "/api/v1/products/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5001
+                }
+            ]
+        },
+        {
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+            "UpstreamPathTemplate": "/api/v1/products",
+            "DownstreamPathTemplate": "/api/v1/products",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5001
+                }
+            ]
         }
     ],
     "GlobalConfiguration": {
